@@ -17,4 +17,6 @@ int main(int arglen,char** args)
     ss>>a;
     std::string b = ss.str();
     std::cout<<10<<endl<<"look"<<endl;
+    printf("look me %d",100);
+    
 }
