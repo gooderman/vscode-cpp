@@ -33,6 +33,9 @@
         "map": "cpp",
         "string": "cpp",
         "system_error": "cpp",
-        "vector": "cpp"
-    }
+        "vector": "cpp",
+        "fstream": "cpp",
+        "regex": "cpp"
+    },
+    "files.encoding": "utf8"
 }
