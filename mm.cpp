@@ -85,5 +85,5 @@ void test_regex()
 
     regex rpe("(\\d+)[^\\d]*(\\d+)");
     cout<<regex_replace("12345--67890",rpe,"[$2][$&][$$][$1][$`][$´]")<<endl;
-    
+    //look
 }
