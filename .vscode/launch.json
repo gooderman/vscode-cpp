@@ -1,11 +1,12 @@
 {
     "version": "0.2.0",
     "configurations": [
-
+        
         {
             "name": "C++ Launch",
             "type": "cppdbg",
             "request": "launch",
+            //"program": "${file}.o",
             "program": "${file}.o",
             "args": ["a","b","c"],
             "stopAtEntry": false,

@@ -35,7 +35,8 @@
         "system_error": "cpp",
         "vector": "cpp",
         "fstream": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "__bit_reference": "cpp"
     },
     "files.encoding": "utf8"
 }

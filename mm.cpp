@@ -34,6 +34,14 @@ void test_stringstream()
     ss.str("");
     ss << "name:" << (double)0;
     std::cout << 5 << ss.str() << endl;
+
+    auto sa = "123546";
+    stringstream stm;
+    stm<<sa;
+    int dd;
+    stm>>dd;
+    printf("dd=%d\n",dd);
+    cout << dd << "===="<<endl;
 }
 void test_fstream()
 {
@@ -58,17 +66,24 @@ void test_regex()
 {
     regex re("房间号[:：\\s]{0,}(\\d+)");
     std::string ss[] = {
-        "xx麻将房间号12345快来",
-        "xx麻将房间号:12345,快来",
-        "xx麻将房间号： 12345快来",
-        "xx麻将房间号  :12345,快来",
-        "xx麻将房间号：12345：快来",
-        "xx麻将房间号 ：12345.快来",
-        "xx麻将房间号  12345。快来",
+        "xx麻将ffds房间号12345快来",
+        "xx麻将44f房间号:12345,快来",
+        "xx麻将fa房间号： 12345快来",
+        "xx麻将4人发v恶房间号  :12345,快来",
+        "xx麻饿将地方房间号：12345：快来",
+        "xx麻e将房间号 ：12345.快来",
+        "xx3麻将房间号  12345。快来",
     };
     int i = 1;
     for (auto s : ss)
     {
+        
+        auto ff = s.find("xx麻将");
+        if(ff==string::npos)
+        {
+            cout << i++ << " no match" << s.c_str() << endl;
+            continue;
+        }
         smatch sm;
         auto f = regex_search(s, sm, re);
         cout << i++ << "  " << s.c_str() << endl;
