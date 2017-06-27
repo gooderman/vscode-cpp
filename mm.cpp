@@ -48,19 +48,6 @@ void test_fstream()
     fstream ss;
 }
 void test_regex();
-int main(int arglen, char **args)
-{
-    std::string param;
-    for (int i = 0; i < arglen; i++)
-    {
-        param += args[i];
-    }
-    std::cout << "args" << param << endl;
-    test_stringstream();
-    printf("look me 我 xx %d\r\n", 100);
-    test_fstream();
-    test_regex();
-}
 
 void test_regex()
 {
@@ -101,4 +88,76 @@ void test_regex()
     regex rpe("(\\d+)[^\\d]*(\\d+)");
     cout<<regex_replace("12345--67890",rpe,"[$2][$&][$$][$1][$`][$´]")<<endl;
     //look
+}
+
+void testTime()
+{
+    auto t1= std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::seconds(10));
+    cout<<"testTime 10s="<<t1.count()<<" milliseconds"<<endl;
+
+    auto t = std::chrono::steady_clock::now().time_since_epoch();
+    auto dafaulttime = [=]()->long long{
+        return t.count();//==std::chrono::nanoseconds
+    };
+    auto nanotimes = [=]()->long long{
+        return std::chrono::duration_cast<std::chrono::nanoseconds>(t).count();
+    };
+    auto microtimes = [=]()->long long{
+        return std::chrono::duration_cast<std::chrono::microseconds>(t).count();
+    };
+    auto millitime = [=]()->long long{
+        return std::chrono::duration_cast<std::chrono::milliseconds>(t).count();
+    };
+    auto secondtime = [=]()->long long{
+        return std::chrono::duration_cast<std::chrono::seconds>(t).count();
+    };
+    cout<<"dafaulttime      ="<<dafaulttime()<<" defaulttime"<<endl;
+    cout<<"nanotimes        ="<<nanotimes()<<" nanoseconds"<<endl;
+    cout<<"microtimes       ="<<microtimes()<<" microtimes"<<endl;
+    cout<<"millitime        ="<<millitime()<<" milliseconds"<<endl;
+    cout<<"secondtime       ="<<secondtime()<<" seconds"<<endl;
+}
+
+void testVector()
+{
+    auto str = std::string("abcdefg");
+    std::vector<char> charvect(str.begin(), str.end()); 
+    cout<<"convert str to vector=="<<charvect.data()<<endl;
+
+    charvect.push_back('H');
+    auto str1 = std::string(charvect.begin(),charvect.end());
+    cout<<"convert vector to str=="<<str1<<endl;
+
+}
+void testString()
+{
+    std::string ss = "123456789";
+    cout<<ss<<endl;
+    ss.erase(5,1);
+    cout<<ss<<endl;
+    ss.insert(5,1,'A');
+    cout<<ss<<endl;
+    auto d = ss.data();
+    unsigned char * p = (unsigned char*)d;
+    p[0]='C';
+    p[8]='K';
+    cout<<ss<<endl;
+
+
+}
+int main(int arglen, char **args)
+{
+    std::string param;
+    for (int i = 0; i < arglen; i++)
+    {
+        param += args[i];
+    }
+    std::cout << "args" << param << endl;
+    test_stringstream();
+    printf("look me 我 xx %d\r\n", 100);
+    test_fstream();
+    test_regex();
+    testTime();
+    testVector();
+    testString();
 }

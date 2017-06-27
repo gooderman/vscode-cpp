@@ -36,7 +36,10 @@
         "vector": "cpp",
         "fstream": "cpp",
         "regex": "cpp",
-        "__bit_reference": "cpp"
+        "__bit_reference": "cpp",
+        "chrono": "cpp",
+        "iterator": "cpp",
+        "deque": "cpp"
     },
     "files.encoding": "utf8"
 }
