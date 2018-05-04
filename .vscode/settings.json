@@ -39,7 +39,8 @@
         "__bit_reference": "cpp",
         "chrono": "cpp",
         "iterator": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "__nullptr": "cpp"
     },
     "files.encoding": "utf8"
 }

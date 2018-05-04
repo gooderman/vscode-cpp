@@ -5,6 +5,14 @@
 #include <map>
 #include <fstream>
 #include <regex>
+#include <functional>
+#include <iostream>
+#include <vector>
+#include <memory>
+#include <cstdio>
+#include <fstream>
+#include <cassert>
+#include <functional>
 using namespace std;
 void test_stringstream()
 {
@@ -145,6 +153,50 @@ void testString()
 
 
 }
+
+struct B
+{
+    B(int b)
+    {
+        m_b = b;
+        print();
+    }
+    int m_b;
+    void print()
+    {
+        cout <<"B="<<m_b<<endl;
+    }
+};
+void testMoveForward2(B&& b,int ct);
+
+void testMoveForward2(B&& b,int ct)
+{
+    cout<<ct<<"-"<<&b<<endl;
+    if(ct>10){
+        return; 
+    }
+    else
+    {
+        testMoveForward2(std::forward<B>(b),ct+2);
+    }
+}
+
+void testMoveForward()
+{
+    std::string a = "abc";
+    std::string b = a;
+    auto c = std::move(b);
+    cout<<a<< "-" << b << "-"<<c<<endl;
+
+    B cb(10);
+    cb.m_b = 11;
+    auto&& cbb = std::move(cb);
+    cbb.m_b=12;
+    cb.print();
+
+    testMoveForward2(std::move(B(990)),1);
+}
+
 int main(int arglen, char **args)
 {
     std::string param;
@@ -160,4 +212,5 @@ int main(int arglen, char **args)
     testTime();
     testVector();
     testString();
+    testMoveForward();
 }
